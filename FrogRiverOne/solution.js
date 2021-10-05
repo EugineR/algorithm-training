@@ -57,3 +57,46 @@ function solution54(X, A) {
 
     return result;
 }
+
+// 54%
+
+function solution(X, A) {
+    let storage = {}
+
+    const filteredArray = A.reduce((acc, item, index) => {
+        if (!!storage[item]) {
+            return [...acc]
+        } else {
+            storage = { ...storage, [item]: item }
+            return [...acc, item]
+        }
+    }, []).filter(item => item <= X)
+
+    const sum = filteredArray.reduce((acc, i) => acc + i, 0);
+
+    const potentialSum = X * (X + 1) / 2;
+
+    return sum === potentialSum
+        ? A.findIndex(item => item === filteredArray[filteredArray.length - 1])
+        : -1
+}
+
+// 100%
+function solution(X, A) {
+    let storage = {};
+    let counter = 0;
+    let i = 0;
+
+    for (i; i < A.length; i++) {
+        if (!storage[A[i]] && A[i] <= X) {
+            storage[A[i]] = true;
+            counter++
+        }
+
+        if (counter === X) {
+            break
+        }
+    }
+
+    return counter === X ? i : -1;
+}
