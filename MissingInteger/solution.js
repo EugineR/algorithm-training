@@ -58,3 +58,18 @@ function solution(A) {
 
     return i;
 }
+
+// 100
+
+function solution(A) {
+    const a = {};
+    for (let i = 0; i < A.length; i++) {
+        a[A[i]] = true;
+    }
+
+    for (let i = 1; i <= 100000; i++) {
+        if (!a[i]) return i;
+    }
+
+    return 100001;
+}
