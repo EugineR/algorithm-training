@@ -25,3 +25,52 @@ function solution(A) {
 
     return result;
 }
+
+// incorrect
+
+function solution(A) {
+    const mappedA = A.map((r, index) => ({ start: index - r, end: index + r }))
+
+    const startStorage = {}
+    const endStorage = {}
+
+    const coords = mappedA.reduce((acc, item) => {
+        acc[item.start] = true;
+        acc[item.end] = true
+
+
+        startStorage[item.start] ? startStorage[item.start]++ : startStorage[item.start] = 1
+        endStorage[item.end] ? endStorage[item.end]++ : endStorage[item.end] = 1
+
+        return acc;
+    }, {})
+
+    const sortedCoords = Object.keys(coords).sort((a, b) => a - b);
+
+    let result = 0;
+    let amountOfStarted = 0;
+
+
+    console.log(startStorage, endStorage, sortedCoords)
+    for (let i = 0; i < sortedCoords.length; i++) {
+        const currentX = sortedCoords[i];
+
+        if (!!startStorage[currentX]) {
+            amountOfStarted += startStorage[currentX];
+        }
+
+        if (!!endStorage[currentX]) {
+            result += amountOfStarted - endStorage[currentX]
+            amountOfStarted -= endStorage[currentX];
+        }
+
+        console.log(currentX, amountOfStarted, result)
+
+        if (result > 10000000) {
+            result = -1;
+            break
+        }
+    }
+
+    return result;
+}
