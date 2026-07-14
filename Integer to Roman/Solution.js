@@ -70,3 +70,34 @@ var intToRoman = function(num) {
 
     return str;
 };
+
+// 84% - memory optimised
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman = function(num) {
+    let temp = num;
+    let str = '';
+
+    const numbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    const chars = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+
+
+    for (let i = 0; i < numbers.length; i++) {
+        const result = Math.floor(temp / numbers[i]);
+
+        if (result > 0) {
+            for (let j = 0; j < result; j++) {
+                str = str + chars[i];
+            }
+
+            temp = temp - result * numbers[i];
+        }
+
+        if (temp === 0) break;
+    }
+
+
+    return str;
+};
