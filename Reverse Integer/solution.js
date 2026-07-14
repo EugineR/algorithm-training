@@ -22,3 +22,26 @@ var reverse = function(x) {
 
     return x < 0 ? -result : result;
 };
+
+
+// 79%
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function(x) {
+    let initialAbs = Math.abs(x);
+    let result = 0;
+
+    while (initialAbs > 0) {
+        result = result * 10 + initialAbs % 10;
+        initialAbs = Math.floor(initialAbs / 10)
+    }
+
+    if (result > 2147483648) {
+        return 0;
+    }
+
+    return x < 0 ? -result : result;
+};
