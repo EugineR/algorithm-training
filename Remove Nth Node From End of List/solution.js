@@ -12,38 +12,71 @@
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function (head, n) {
-    let size = 1;
-    let cursor = head;
-    while (cursor.next) {
-        size += 1;
-        cursor = cursor.next;
+// var removeNthFromEnd = function (head, n) {
+//     let size = 1;
+//     let cursor = head;
+//     while (cursor.next) {
+//         size += 1;
+//         cursor = cursor.next;
+//     }
+//
+//     if (size == 1) {
+//         return head.next;
+//     }
+//
+//     const target = size - n - 1;
+//     let i = 0;
+//     let tempNode;
+//     console.log(target)
+//
+//     cursor = head;
+//
+//     if (target < 0) {
+//         return head.next
+//     }
+//
+//     while (cursor.next) {
+//         if (i === target) {
+//             cursor.next = cursor.next?.next || null
+//             break;
+//         }
+//
+//         cursor = cursor.next;
+//         i += 1;
+//     }
+//
+//     return head;
+// };
+
+
+// 100%
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+var removeNthFromEnd = function(head, n) {
+    const result = new ListNode(null, head);
+    let first = result;
+    let second = result;
+
+    for(let i = 0; i < n; i++) {
+        second = second.next;
     }
 
-    if (size == 1) {
-        return head.next;
+    while(second?.next) {
+        first = first.next;
+        second = second.next;
     }
 
-    const target = size - n - 1;
-    let i = 0;
-    let tempNode;
-    console.log(target)
+    first.next =  first?.next?.next || null;
 
-    cursor = head;
-
-    if (target < 0) {
-        return head.next
-    }
-
-    while (cursor.next) {
-        if (i === target) {
-            cursor.next = cursor.next?.next || null
-            break;
-        }
-
-        cursor = cursor.next;
-        i += 1;
-    }
-
-    return head;
+    return result.next;
 };
