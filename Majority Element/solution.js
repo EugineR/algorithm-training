@@ -21,3 +21,29 @@ var majorityElement = function(nums) {
     }
   }
 };
+
+
+// 100% / 13%
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+  let val;
+  let count = 0;
+
+  for(let i = 0; i < nums.length; i++) {
+    if(val === nums[i]) {
+      count++;
+    } else {
+      count--;
+    }
+
+    if(count < 0) {
+      val = nums[i]
+      count = 1;
+    }
+  }
+
+  return val;
+};
