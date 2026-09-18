@@ -25,4 +25,21 @@ var canJump = function(nums) {
   return false;
 };
 
+// 68% / 52%
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canJump = function(nums) {
+  let goal = nums.length - 1
+  for (let i = goal - 1; i >= 0; i--) {
+    let maxJump = nums[i]
+    if (i + maxJump >= goal) {
+      goal = i
+    }
+  }
+  return goal === 0
+};
+
 
