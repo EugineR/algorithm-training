@@ -30,3 +30,14 @@ var jump = function (nums) {
   return count;
 
 };
+
+// 65% / 99%
+
+var jump = function(nums) {
+  let jumps = 0, curEnd = 0, farthest = 0;
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (i + nums[i] > farthest) farthest = i + nums[i];
+    if (i === curEnd) { jumps++; curEnd = farthest; }
+  }
+  return jumps;
+};
