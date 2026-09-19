@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/h-index/?envType=study-plan-v2&envId=top-interview-150
 
-// 45% / 27%
+// 78% / 64%
 
 /**
  * @param {number[]} citations
